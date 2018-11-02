@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Json\JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingSystem\CalculateRating.cs" />
+    <Compile Include="RatingSystem\Generator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
