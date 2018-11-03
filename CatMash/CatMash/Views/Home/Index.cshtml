@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Vote</title>
+    <script src="../../Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="row" id="imagesDiv">
+
+    </div>
+
+    <script type="text/javascript">
+        var arrayOfPossibilities = @Html.Raw(Json.Encode(ViewBag.List));
+        var index = 0;
+        var divColStart = '<div class="col-md-6 holder"><a>';
+        var divColEnd = '</a></div>';
+
+            $('#imagesDiv').append(divColStart + '<img class="rounded-circle" id="' + arrayOfPossibilities[index].Item1.Id + '" src="' + arrayOfPossibilities[index].Item1.Url + '"/>' + divColEnd);
+
+            $('#imagesDiv').append(divColStart + '<img class="rounded-circle" id="' + arrayOfPossibilities[index].Item2.Id + '" src="' + arrayOfPossibilities[index].Item2.Url + '"/>' + divColEnd);
+
+    </script>
+</body>
+</html>

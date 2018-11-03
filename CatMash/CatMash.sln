@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatMash.Core", "CatMash.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatMash.Tests", "CatMash.Tests\CatMash.Tests.csproj", "{6CE1D574-A360-4560-86B1-22549E4B4E00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatMash.Services", "CatMash.Services\CatMash.Services.csproj", "{00ADCC11-4DB9-4E5F-95DA-051064B5A9C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6CE1D574-A360-4560-86B1-22549E4B4E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CE1D574-A360-4560-86B1-22549E4B4E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CE1D574-A360-4560-86B1-22549E4B4E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00ADCC11-4DB9-4E5F-95DA-051064B5A9C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00ADCC11-4DB9-4E5F-95DA-051064B5A9C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00ADCC11-4DB9-4E5F-95DA-051064B5A9C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00ADCC11-4DB9-4E5F-95DA-051064B5A9C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
