@@ -8,19 +8,99 @@
 
 </head>
 <body>
+
+    <!-- Div where the images will be shown -->
     <div class="row" id="imagesDiv">
+        <!-- Button to stop voting and go directely to the rank-->
+        <div class="col-12 col-md-12 col-sm-12">
+            <a class="btn btn-danger btn-lg" role="button" id="stop">Go to Ranking</a>
+        </div>
+
+        <!-- Alert showed when all the cats are compared -->
+        <div class="col-12 col-md-12 col-sm-12">
+            <div class="alert alert-success alert-dismissible" role="alert" id="finishedAlert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Congrats!</strong> You just finished on voting the most adorable cats.
+                <hr>
+                <p>Go find <a href="@Url.Action("Rank","Rank")"><strong>the ranking</strong></a></p>
+            </div>
+        </div>
+
+        <!-- Entry hello message and a button to start voting -->
+        <div class="col-12 col-md-12 col-sm-12">
+            <div class="jumbotron">
+                <h1 class="display-4">Hello !</h1>
+                <p class="lead">This is a simple application to vote to find the most adorable cat.</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <a href="#" class="btn btn-info btn-lg" role="button" id="start">Start Voting</a>
+                </p>
+            </div>
+        </div>
 
     </div>
 
     <script type="text/javascript">
+        /**
+         * * Insert content in the page element "imagesDiv" with the cats images
+         */
+        function showImages(arrayItem) {
+            var divColStart = '<div class="col-md-6 holder"><a>';
+            var divColEnd = '</a></div>';
+            $('#imagesDiv').append(divColStart + '<img class="rounded-circle" id="' + arrayItem.Item1.Id + '" src="' + arrayItem.Item1.Url + '"/>' + divColEnd);
+            $('#imagesDiv').append(divColStart + '<img class="rounded-circle" id="' + arrayItem.Item2.Id + '" src="' + arrayItem.Item2.Url + '"/>' + divColEnd);
+        }
+
+        // Fill the array with the data given from the controller (all the possible matches between the cats)
         var arrayOfPossibilities = @Html.Raw(Json.Encode(ViewBag.List));
         var index = 0;
-        var divColStart = '<div class="col-md-6 holder"><a>';
-        var divColEnd = '</a></div>';
 
-            $('#imagesDiv').append(divColStart + '<img class="rounded-circle" id="' + arrayOfPossibilities[index].Item1.Id + '" src="' + arrayOfPossibilities[index].Item1.Url + '"/>' + divColEnd);
+        // js call each time an "a" tag is clicked
+        $(document).on("click", "a", function (event) {
+            event.preventDefault();
 
-            $('#imagesDiv').append(divColStart + '<img class="rounded-circle" id="' + arrayOfPossibilities[index].Item2.Id + '" src="' + arrayOfPossibilities[index].Item2.Url + '"/>' + divColEnd);
+            //If the clicked "a" is for starting the vote, remove the "Hello" div, Show the images of the first element and increment the index
+            if ($(this).attr('id') === 'start') {
+                $(this).parent().parent().remove();
+                showImages(arrayOfPossibilities[index]);
+                index++;
+                return;
+            }
+
+            //If the clicked "a" is to stop voting, then redirect to the rank page
+            if ($(this).attr('id') === 'stop') {
+                window.location.href = '@Url.Action("Rank", "Rank")';
+                return;
+            }
+
+            // store the id the winner between the two showed cats (clicked one)
+            var winnerId = $(this).find('img:first').attr('id');
+            // store the id of the loser (not clicked one)
+            var loserId = $('a').not(this).find('img:first').attr('id');
+            var twoCats = { idWinner: winnerId, idLoser: loserId }
+
+
+                // Send an Ajax request to calculate the new score,
+                // if it is succeeded increment the index in order to show the next element on the list
+                // and remove the images holder from the element before
+                // Once we arrive to last element in the list, show the alert message
+                $.ajax({
+                    url: '/Home/UpdateScore',
+                    type: 'POST',
+                    data: JSON.stringify(twoCats),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function () {
+                        index++;
+                        $(".holder").remove();
+                        if (index === arrayOfPossibilities.length) {
+                            $("#finishedAlert").show();
+                        }
+                        showImages(arrayOfPossibilities[index]);
+                    }
+                });
+        });
 
     </script>
 </body>

@@ -25,7 +25,7 @@ namespace CatMash.Business
             return cats;
         }
 
-        public static void Update(string id, int score)
+        public static void UpdateCat(string id, int score)
         {
             try
             {
@@ -43,6 +43,40 @@ namespace CatMash.Business
             {
                 throw;
             }
+        }
+        public static Cat GetCat(string id)
+        {
+            Cat cat = new Cat();
+            try
+            {
+                using (RatingContext context = new RatingContext())
+                {
+                    cat = context.Cats.Where(c => c.Id == id).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return cat;
+        }
+
+        public static List<Cat> GetCatsByOrder()
+        {
+            List<Cat> cats = new List<Cat>();
+            try
+            {
+                using (RatingContext context = new RatingContext())
+                {
+                    cats = context.Cats.OrderByDescending(c => c.Score).ToList();
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return cats;
         }
 
     }
