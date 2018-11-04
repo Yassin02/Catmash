@@ -19,14 +19,9 @@ namespace CatMash.Tests
         [TestMethod]
         public void Should_Pass_When_ExcpectedResultsReturnedFor_Calculate()
         {
-            List<int> excpected = new List<int>
-            {
-                116,
-                84
-            };
-            // Same score, First entered is the winner 'result = 1'
-            var list = CalculateRating.Calculate(100, 100, 1);
-            CollectionAssert.AreEqual(excpected, list);
+            // Same score entered, Score difference should be 16
+            var expected = CalculateRating.CalculateScoreDifference(100, 100);
+            Assert.AreEqual(expected, 16);
         }
     }
 }

@@ -24,24 +24,14 @@ namespace CatMash.Core.RatingSystem
         /// <summary>
         /// Calculate the score using the elo rating system
         /// </summary>
-        /// <param name="FirstScore"></param>
-        /// <param name="SecondScore"></param>
-        /// <param name="result"></param>
-        /// <returns>List of the new scores</returns>
-        public static List<int> Calculate(int FirstScore, int SecondScore, int result)
+        /// <param name="FirstScore">Score of the winner</param>
+        /// <param name="SecondScore">Score of the loser</param>
+        /// <returns>The score difference to Add/take from the two players</returns>
+        public static int CalculateScoreDifference(int FirstScore, int SecondScore)
         {
-            int performanceRating = (int)(KFACTOR * (result - ExpectationToWin(FirstScore, SecondScore)));
+            int scoreDifference = (int)(KFACTOR * (1 - ExpectationToWin(FirstScore, SecondScore)));
 
-            FirstScore += performanceRating;
-            SecondScore -= performanceRating;
-
-            List<int> scoreList = new List<int>
-            {
-                FirstScore,
-                SecondScore
-            };
-
-            return scoreList;
+            return scoreDifference;
         }
     }
 }
