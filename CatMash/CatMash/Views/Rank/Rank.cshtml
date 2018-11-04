@@ -1,0 +1,31 @@
+﻿@using CatMash.Business.Model;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rank</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-4">
+
+            @{
+                int counter = 1;
+                var cats = (List<Cat>)ViewBag.List;
+                for (int i = 0; i < cats.Count; i++)
+                {
+                    <h1>#@counter</h1>
+                    <img class="rounded-circle" src="@cats[i].Url" />
+                    <span>@cats[i].Score</span>
+                    <hr />
+                    if (i < cats.Count - 1 && cats[i].Score != cats[i + 1].Score)
+                    {
+                        counter++;
+                    }
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>
