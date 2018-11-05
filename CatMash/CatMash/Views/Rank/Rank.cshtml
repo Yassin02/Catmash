@@ -8,24 +8,26 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-md-4">
 
-            @{
-                int counter = 1;
-                var cats = (List<Cat>)ViewBag.List;
-                for (int i = 0; i < cats.Count; i++)
-                {
-                    <h1>#@counter</h1>
-                    <img class="rounded-circle" src="@cats[i].Url" />
-                    <span>@cats[i].Score</span>
+        @{
+            int counter = 1;
+            var cats = (List<Cat>)ViewBag.List;
+            for (int i = 0; i < cats.Count; i++)
+            {
+                <div class="col-md-12">
+                    <h2 class="float-left">#@counter</h2>
+
+                    <div class="square">
+                        <a class="float-right" href="@cats[i].Url" target="_blank"><img class="contain" src="@cats[i].Url" /></a>
+                    </div>
                     <hr />
-                    if (i < cats.Count - 1 && cats[i].Score != cats[i + 1].Score)
-                    {
-                        counter++;
-                    }
+                </div>
+                if (i < cats.Count - 1 && cats[i].Score != cats[i + 1].Score)
+                {
+                    counter++;
                 }
             }
-        </div>
+        }
     </div>
 </body>
 </html>

@@ -4,14 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Match</title>
+    <title>@ViewBag.Title - CatMash</title>
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div>
-        <h1>You ready to start chosing ?</h1>
-    </div>
+    
     <div class="container body-content">
+        <div class="row logo">
+            <img src="~/Content/Images/logo.png" class="mx-auto d-block">
+        </div>
         @RenderBody()
         <hr />
         <footer>
