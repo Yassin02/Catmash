@@ -36,6 +36,7 @@ namespace CatMash.Web.Controllers
                 log.Info("Out : Rank");
             }
 
+            ViewBag.Title = "Rank";
             return View();
         }
     }

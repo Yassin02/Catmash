@@ -4,10 +4,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Rank</title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="row">
+    <div class="row text-center">
+        <div class="col-12 col-md-12">
+            <a href="@Url.Action("Index","Home")" class="btn btn-lg">Home</a>
+        </div>
 
         @{
             int counter = 1;
@@ -15,12 +18,12 @@
             for (int i = 0; i < cats.Count; i++)
             {
                 <div class="col-md-12">
+                    <hr />
                     <h2 class="float-left">#@counter</h2>
 
                     <div class="square">
                         <a class="float-right" href="@cats[i].Url" target="_blank"><img class="contain" src="@cats[i].Url" /></a>
                     </div>
-                    <hr />
                 </div>
                 if (i < cats.Count - 1 && cats[i].Score != cats[i + 1].Score)
                 {

@@ -33,6 +33,7 @@ namespace CatMash.Web.Controllers
                 log.Info("Out : Index");
             }
 
+            ViewBag.Title = "Vote";
             return View();
         }
 

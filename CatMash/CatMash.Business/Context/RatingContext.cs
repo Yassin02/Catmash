@@ -11,6 +11,7 @@ namespace CatMash.Business.Context
             : base("name=RatingContext")
         {
             Database.SetInitializer<RatingContext>(new RatingDBInitializer());
+            Database.CommandTimeout = 300;
         }
 
         public DbSet<Cat> Cats { get; set; }
